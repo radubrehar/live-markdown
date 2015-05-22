@@ -2,7 +2,9 @@
 
 var fs = require('fs')
 var path = require('path')
+var multiline = require('multiline')
 var file = path.normalize(process.argv[2])
+
 
 var port = parseInt(process.argv[3], 10)
 
@@ -49,7 +51,24 @@ function getHTML(){
 }
 
 app.get('/', function(req, res){
-  res.sendFile(path.resolve('index.html'));
+  res.send(multiline(function(){/*
+    <!DOCTYPE html>
+
+<html>
+<head>
+<script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+<script>
+  var socket = io();
+  socket.on('update', function(html){
+    document.body.innerHTML = html
+  })
+</script>
+</head>
+<body>
+</body>
+</html>
+
+*/}))
 });
 
 io.on('connection', function(socket){
