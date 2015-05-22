@@ -2,7 +2,6 @@
 
 var fs = require('fs')
 var path = require('path')
-var multiline = require('multiline')
 var file = path.normalize(process.argv[2])
 
 
@@ -13,20 +12,20 @@ if (isNaN(port)){
 }
 
 var marked = require('marked');
-// marked.setOptions({
-//   renderer: new marked.Renderer(),
-//   gfm: true,
-//   tables: true,
-//   breaks: false,
-//   pedantic: false,
-//   sanitize: true,
-//   smartLists: true,
-//   smartypants: false
-// })
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: true,
+  smartLists: true,
+  smartypants: false
+})
 
 fs.watchFile(file, {interval: 50}, update)
 
-
+var INDEX_HTML = fs.readFileSync(path.normalize('./index.html'), 'utf8')
 var sockets = []
 
 function update(){
@@ -51,24 +50,7 @@ function getHTML(){
 }
 
 app.get('/', function(req, res){
-  res.send(multiline(function(){/*
-    <!DOCTYPE html>
-
-<html>
-<head>
-<script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
-<script>
-  var socket = io();
-  socket.on('update', function(html){
-    document.body.innerHTML = html
-  })
-</script>
-</head>
-<body>
-</body>
-</html>
-
-*/}))
+  res.send(INDEX_HTML)
 });
 
 io.on('connection', function(socket){
