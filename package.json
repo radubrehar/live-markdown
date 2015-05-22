@@ -1,0 +1,25 @@
+{
+  "name": "livemarked",
+  "version": "1.0.0",
+  "description": "Live markdown preview",
+  "main": "index.js",
+  "scripts": {},
+  "preferGlobal": "true",
+  "bin": {
+    "livemarked" : "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/radubrehar/live-markdown.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/radubrehar/live-markdown/issues"
+  },
+  "dependencies": {
+    "express": "~4.12.4",
+    "marked": "~0.3.3",
+    "socket.io": "~1.3.5"
+  }
+}
