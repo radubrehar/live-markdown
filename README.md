@@ -19,4 +19,4 @@ Built on top of `socket.io`, `marked` and `express`.
 
 ## LICENSE
 
-```MIT```
+#### MIT
