@@ -2,6 +2,7 @@
 
 var fs = require('fs')
 var path = require('path')
+var multiline = require('multiline')
 var file = path.normalize(process.argv[2])
 
 
