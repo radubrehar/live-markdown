@@ -25,7 +25,25 @@ marked.setOptions({
 
 fs.watchFile(file, {interval: 50}, update)
 
-var INDEX_HTML = fs.readFileSync(path.normalize('./index.html'), 'utf8')
+// var INDEX_HTML = fs.readFileSync(path.normalize('./index.html'), 'utf8')
+var INDEX_HTML = multiline(function(){/*
+  <!DOCTYPE html>
+
+  <html>
+  <head>
+  <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+  <script>
+    var socket = io();
+    socket.on('update', function(html){
+      document.body.innerHTML = html
+    })
+  </script>
+  </head>
+  <body>
+  </body>
+  </html>
+
+*/})
 var sockets = []
 
 function update(){
